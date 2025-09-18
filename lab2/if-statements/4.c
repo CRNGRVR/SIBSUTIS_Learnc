@@ -1,22 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define  COUNT 3
+#include "../common/getcmdinput.h"
+#define  COUNT 4
 
 int main(int argc, char** argv)
 {
-    if (argc != COUNT + 1)
-    {
-        printf("Введите %d чисел\n", COUNT);
-        return -1;
-    }
+    int *numbers = getcmdinput(COUNT, argc, argv, "Введите 4 числа.");
+    if (numbers == NULL) return -1;
 
-    int numbers[COUNT] = {};
-    for (int i = 1; i < COUNT + 1; i++)
-    {
-        numbers[i - 1] = atoi(argv[i]);
-    }
-
-    
     for (int i = 0; i < COUNT; i++)
     {
         for (int j = 0; j < COUNT; j++)
@@ -31,10 +22,8 @@ int main(int argc, char** argv)
         
     }
 
-    int k = numbers[0];
-    int m = numbers[1];
-    int n = numbers[2];
-
-    printf("K=%d M=%d N=%d\n", k, m, n);
+    printf("Наибольшее: %d, наибольшее поменьше: %d\n", numbers[COUNT - 1],
+           numbers[COUNT - 2]);
+    clearcmdinput(numbers);
     return 0;
 }   
