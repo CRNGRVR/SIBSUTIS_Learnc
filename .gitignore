@@ -1,0 +1,15 @@
+# Ignore all
+*
+
+# Unignore all with extensions
+!*.*
+
+# Unignore all dirs
+!*/
+
+# Makefile не имеют расширений, но не должны быть проигнорированы
+!Makefile
+!makefile
+
+.DS_Store
+.vscode
