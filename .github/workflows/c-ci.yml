@@ -4,11 +4,11 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events but only for the "homework4" branch
   push:
-    branches: [ "main" ]
+    branches: [ "homework4" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "homework4" ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -25,12 +25,26 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Build all
+        run: make
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+      - name: Set executable a tests
+        run: chmod +x ./tests/test*.sh
+
+      - name: Test exercise 1
+        run: make test1
+
+      - name: Test exercise 2
+        run: make test2
+      
+      - name: Test exercise 3
+        run: make test3
+
+      - name: Test exercise 4
+        run: make test4
+
+      - name: Test exercise 5
+        run: make test5
+
+      - name: Clean
+        run: make clean
