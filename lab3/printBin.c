@@ -6,8 +6,7 @@ void printBin(int num)
 {
     for (int i = (sizeof(int) * 8) - 1; i >= 0; i--)
     {
-        int num = num >> i;
-        printf("%d", num & 1);
+        printf("%d", (num >> 1) & 1);
     }
 
     printf("\n");
