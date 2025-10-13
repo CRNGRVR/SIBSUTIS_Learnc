@@ -1,3 +1,5 @@
+#include <stdlib.h>
+#include <string.h>
 #include "../extra/Unity/unity.h"
 #include "../include/advanced_array_function.h"
 
@@ -98,7 +100,6 @@ int main(void) {
     RUN_TEST(test_max_subarray_sum_max_at_end);
     RUN_TEST(test_max_subarray_sum_single_zero);
     RUN_TEST(test_max_subarray_sum_zeros_and_negatives);
-
     
     return UNITY_END();
 }
