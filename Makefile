@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall --pedantic
+CFLAGS=-Wall --pedantic -g
 BIN=./bin
 SRC=./src
 TESTDIR=./tests
