@@ -1,18 +1,21 @@
 CC=gcc
-CFLAGS=-Wall --pedantic
+CFLAGS=-Wall --pedantic -Wextra -std=c99
 BIN=./bin
 SRC=./src
 TESTDIR=./tests
+EXTRA=./extra
 
-all: homework
+TARGET = test_runner
 
-homework: bin
+$(TARGET): $(SRC)/advanced_array_function.c $(TESTDIR)/test_advanced_array_function.c $(EXTRA)/Unity/unity.c
+	$(CC) $(CFLAGS) $(SRC)/advanced_array_function.c \
+	$(TESTDIR)/test_advanced_array_function.c \
+	$(EXTRA)/Unity/unity.c -o $(BIN)/$(TARGET)
 
-test: homework
-	$(TESTDIR)/test.sh
-
-bin:
-	mkdir $(BIN)
+test: $(TARGET)
+	./$(BIN)/$(TARGET)
 
 clean:
 	rm -rf $(BIN)
+
+.PHONY: test clean
