@@ -52,7 +52,7 @@ void test_max_subarray_sum_alternating(void) {
     int size = sizeof(nums) / sizeof(nums[0]);
     
     int result = max_subarray_sum(nums, size);
-    TEST_ASSERT_EQUAL_INT(9, result); // 3 + (-2) + 4 + (-1) + 5 = 9
+    TEST_ASSERT_EQUAL_INT(10, result); // 2 + (-1) + 3 + (-2) + 4 + (-1) + 5 = 10
 }
 
 void test_max_subarray_sum_max_at_beginning(void) {
