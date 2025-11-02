@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall --pedantic -Wextra -std=c99
+CFLAGS=-Wall --pedantic -Wextra -std=c99 -g
 BIN=./bin
 SRC=./src
 TESTDIR=./tests
@@ -15,7 +15,7 @@ $(TARGET1): $(SRC)/advanced_array_function.c $(TESTDIR)/test_max_sum_array.c $(E
 	$(EXTRA)/Unity/unity.c -o $(BIN)/$(TARGET1)
 
 $(TARGET2): $(SRC)/advanced_array_function.c $(TESTDIR)/test_longest_increasing_subsequence.c $(EXTRA)/Unity/unity.c $(BIN)
-	$(CC) $(CFLAGS) $(SRC)/advanced_array_function.c \
+	$(CC) $(CFLAGS) -g $(SRC)/advanced_array_function.c \
 	$(TESTDIR)/test_longest_increasing_subsequence.c \
 	$(EXTRA)/Unity/unity.c -o $(BIN)/$(TARGET2)
 
