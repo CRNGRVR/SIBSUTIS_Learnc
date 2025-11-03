@@ -1,10 +1,93 @@
 #include "../include/advanced_array_function.h"
 #include <malloc.h>
+#include <limits.h>
+#include <math.h>
+
+char _is_all_negative(int *nums, int size)
+{
+    int negatives = 0;
+    for (size_t i = 0; i < size; i++) if (nums[i] < 0) negatives++;
+    if (negatives == size) return 1;
+    else return 0;
+}
 
 int max_subarray_sum(int* nums, int size)
 {
-    return 0;
+    if (nums == NULL) return 0;
+    int max = INT_MIN;
+    int limit = 1;
+
+    
+    if (_is_all_negative(nums, size))
+    {
+        //  Не все числа отрицательные
+        for (size_t i = 0; i < size; i++)
+        {
+            int summ = 0;
+            for (size_t j = i; j < size; j++)
+            {
+                summ += nums[j];
+            }
+
+            if (summ > max)
+            {
+                max = summ;
+            }
+        }
+
+        for (size_t i = 0; i < size; i++)
+        {
+            for (size_t j = i; j < size; j++)
+            {
+                int summ = 0;
+                for (size_t k = i; k <= j; k++)
+                {
+                    summ += nums[k];
+                    printf("%d ", nums[k]);
+                }
+                printf("\n");
+
+                if (summ > max)
+                {
+                    max = summ;
+                }
+            }
+        }
+    }
+    else
+    {
+        /// DEBUG
+        for (size_t i = 0; i < size; i++)
+        {
+            printf("%d ", nums[i]);
+        }
+        printf("\n\n");
+
+        for (size_t i = 0; i < size; i++)
+        {
+            for (size_t j = i; j < size; j++)
+            {
+                int summ = 0;
+                for (size_t k = i; k <= j; k++)
+                {
+                    summ += nums[k];
+                    printf("%d ", nums[k]);
+                }
+
+                printf("\n");
+
+                if (summ > max)
+                {
+                    max = summ;
+                }
+            }
+        }
+    }
+
+    return max;
 }
+
+
 
 int length_of_lis(int* nums, int numsSize)
 {
