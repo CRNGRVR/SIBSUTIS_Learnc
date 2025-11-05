@@ -213,6 +213,7 @@ int* merge(int* intervals, int intervalsSize, int* returnSize)
     interval *reviewed = base;
     interval *candidate = base;
 
+   
     /**
     *  Для наглядности:
     * 
@@ -235,10 +236,8 @@ int* merge(int* intervals, int intervalsSize, int* returnSize)
                 if (candidate->start <= reviewed->start && candidate->end <= reviewed->end &&
                     candidate->end >= reviewed->start)
                 {
-                    // candidate->start = reviewed->start;
                     reviewed->start = candidate->start;
-                    //  Убрать блок забыл
-                    // _delete_interval_element(&base, reviewed);
+
                     _delete_interval_element(&base, candidate);
 
                     reviewed = base;
@@ -249,24 +248,17 @@ int* merge(int* intervals, int intervalsSize, int* returnSize)
                 else if (candidate->start >= reviewed->start && candidate->end >= reviewed->end &&
                         candidate->start <= reviewed->end)
                 {
-                    //candidate->end = reviewed->end;
                     reviewed->end = candidate->end;
-                    //  Убрать блок забыл
-                    // _delete_interval_element(&base, reviewed);
+
                     _delete_interval_element(&base, candidate);
-    
+
                     reviewed = base;
                     candidate = base;
                     continue;
                 }
-                //  #3
-                // else if (intervals[START_INTERVAL] > start && intervals[END_INTERVAL] < end)
-                // {
-                //     continue;
-                // }
+                //  #3 Изменения не требуются и candidate поглощается полностью
                 else if (candidate->start >= reviewed->start && candidate->end <= reviewed->end)
                 {
-                        //  candidate поглощается
                     _delete_interval_element(&base, candidate);
 
                     reviewed = base;
@@ -279,7 +271,6 @@ int* merge(int* intervals, int intervalsSize, int* returnSize)
                     reviewed->end = candidate->end;
                     reviewed->start = candidate->start;
                     
-                    //  Убрать блок забыл
                     _delete_interval_element(&base, candidate);
 
                     reviewed = base;
@@ -301,6 +292,8 @@ int* merge(int* intervals, int intervalsSize, int* returnSize)
         printf("%d %d  ", printed->start, printed->end);
         printed = printed->next;
     }
+
+    printf("\n");
 
     int iterator = 0;
     while (base != NULL)
