@@ -87,12 +87,18 @@ int main(int argc, char **argv)
 
     int values_size;
     double *values = target_function(h, a, b, &values_size);
+    double tr_integral = integral_trapezoid(values, values_size, h);
+    double spsn_integral = integral_simpson(values, values_size, h);
+
 
     printf("Integral calculated via trapezoid:            %f,\n",
-           integral_trapezoid(values, values_size, h));
+           tr_integral);
 
     printf("Integral calculated via The Simpson Method:   %f\n",
-           integral_simpson(values, values_size, h));
+           spsn_integral);
+
+    printf("Difference between methods:                   %f\n\n",
+           fabs(tr_integral - spsn_integral));
 
     clear_values(values);
     return 0;
