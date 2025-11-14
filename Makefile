@@ -1,18 +1,16 @@
 CC=gcc
-CFLAGS=-Wall --pedantic
+CFLAGS=-Wall --pedantic -g -lm
 BIN=./bin
 SRC=./src
-TESTDIR=./tests
 
-all: homework
+build:
+	$(CC) ./$(SRC)/1.c -o 1 $(CFLAGS)
+	$(CC) ./$(SRC)/2.c -o 2 $(CFLAGS)
+	$(CC) ./$(SRC)/3.c -o 3 $(CFLAGS)
+	$(CC) ./$(SRC)/4.c -o 4 $(CFLAGS)
 
-homework: bin
-
-test: homework
-	$(TESTDIR)/test.sh
-
-bin:
-	mkdir $(BIN)
-
-clean:
-	rm -rf $(BIN)
+test:
+	./1
+	./2
+	./3
+	./4
